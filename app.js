@@ -73,4 +73,18 @@ document.addEventListener('DOMContentLoaded', () => {
         draw()
     }
 
+    // freeze function
+    function freeze() {
+        if(current.some(index => squares[currentPosition + index + width].classList.contains('taken'))) {
+            current.forEach(index => squares[currentPosition + index].classList.add('taken'))
+
+            // start a new tetromino falling
+            random = math.floor(Math.random() * theTetrominos.length)
+            current = theTetrominos[random][currentRotation]
+            currentPosition = 4
+            draw()
+        }
+    }
+
+
 })
