@@ -105,11 +105,25 @@ document.addEventListener('DOMContentLoaded', () => {
         undraw()
         const isAtLeftEdge = current.some(index => (currentPosition + index) % width === 0)
         if(!isAtLeftEdge)  currentPosition -=1
-        if(current.some(index => squares[currentPosition + index].classList.contains('taken')))
+        if(current.some(index => squares[currentPosition + index].classList.contains('taken'))) {
             currentPosition +=1
+        }
+
+        draw()
     }
 
-    draw()
+    // move a tetromino right, unless is at the edge or there is a blockage
+    function moveRight() {
+        undraw()
+        const isAtRightEdge = current.some(index => (currentPosition + index) % width === width -1)
+        if(!isAtRightEdge) currentPosition +=1
+        if(current.some(index => squares[currentPosition + index].classList.contains('taken'))) {
+            currentPosition -=1
+        }
+
+        draw()
+    }
+
 
 
 })
