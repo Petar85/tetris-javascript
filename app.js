@@ -71,6 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
         undraw()
         currentPosition += width
         draw()
+        freeze()
     }
 
     // freeze function
@@ -79,12 +80,23 @@ document.addEventListener('DOMContentLoaded', () => {
             current.forEach(index => squares[currentPosition + index].classList.add('taken'))
 
             // start a new tetromino falling
-            random = math.floor(Math.random() * theTetrominos.length)
+            random = Math.floor(Math.random() * theTetrominos.length)
             current = theTetrominos[random][currentRotation]
             currentPosition = 4
             draw()
         }
     }
+
+    // move the tetromino left, unless is at the edge or there is a blockage
+    function moveLeft() {
+        undraw()
+        const isAtLeftEdge = current.some(index => (currentPosition + index) % width === 0)
+        if(!isAtLeftEdge)  currentPosition -=1
+        if(current.some(index => squares[currentPosition + index].classList.contains('taken')))
+            currentPosition +=1
+    }
+
+    draw()
 
 
 })
