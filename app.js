@@ -64,13 +64,15 @@ document.addEventListener('DOMContentLoaded', () => {
     function draw() {
         current.forEach(index => {
             squares[currentPosition + index].classList.add('tetromino')
+            squares[currentPosition + index].style.backgroundColor = colors[random]
         })
     }
 
     // undraw tetromino
     function undraw() {
         current.forEach(index => {
-            squares[currentPosition + index].classList.remove('tetromino')
+            squares[currentPosition + index].classList.remove('tetromino')  
+            squares[currentPosition + index].style.backgroundColor = ''
         })
     }
 
@@ -170,9 +172,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // remove tetromino from entire grid
         displaySquares.forEach(square => {
             square.classList.remove('tetromino')
+            square.style.backgroundColor = ''
         })
         upNextTetrominos[nextRandom.forEach(index => {
             displaySquares[displayIndex + index].classList.add('tetromino')
+            displaySquares[displayIndex + index].style.backgroundColor = colors[nextRandom]
         })]
     }
 
@@ -200,6 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 row.forEach(index => {
                     squares[index].classList.remove('taken')
                     squares[index].classList.remove('tetromino')
+                    squares[index].style.backgroundColor = ''
                 })
                 const squaresRemoved = squares.splice(i, width)
                 squares = squaresRemoved.concat(squares)
