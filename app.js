@@ -94,10 +94,12 @@ document.addEventListener('DOMContentLoaded', () => {
             current.forEach(index => squares[currentPosition + index].classList.add('taken'))
 
             // start a new tetromino falling
-            random = Math.floor(Math.random() * theTetrominos.length)
+            random = nextRandom
+            nextRandom = Math.floor(Math.random() * theTetrominos.length)
             current = theTetrominos[random][currentRotation]
             currentPosition = 4
             draw()
+            displayShape()
         }
     }
 
@@ -149,6 +151,17 @@ document.addEventListener('DOMContentLoaded', () => {
         [0,1, displayWidth, displayWidth+1], // oTetromino
         [1, displayWidth+1, displayWidth*2+1, displayWidth*3+1] // iTetromino
     ]
+
+    // display the shape in the mini-grid 
+    function displayShape() {
+        // remove tetromino from entire grid
+        displaySquares.forEach(square => {
+            square.classList.remove('tetromino')
+        })
+        upNextTetrominos[nextRandom.forEach(index => {
+            displaySquares[displayIndex + index].classList.add('tetromino')
+        })]
+    }
 
 
 
